@@ -12,24 +12,61 @@ export function IntelligenceCore() {
     { size: 52, dur: 12, rev: false, color: 'rgba(34,211,238,0.5)', nodes: 2 },
   ]
 
+  const particles = [
+    { top: '12%', left: '18%', size: 3, dur: 9, delay: '0s', color: 'rgba(77,163,255,0.6)' },
+    { top: '22%', left: '78%', size: 2, dur: 11, delay: '1.2s', color: 'rgba(139,92,246,0.5)' },
+    { top: '68%', left: '12%', size: 2.5, dur: 8, delay: '2.4s', color: 'rgba(34,211,238,0.5)' },
+    { top: '78%', left: '72%', size: 3, dur: 10, delay: '0.6s', color: 'rgba(77,163,255,0.5)' },
+    { top: '42%', left: '88%', size: 2, dur: 12, delay: '3.1s', color: 'rgba(139,92,246,0.4)' },
+    { top: '52%', left: '6%', size: 2.5, dur: 9.5, delay: '1.8s', color: 'rgba(34,211,238,0.4)' },
+  ]
+
   return (
     <div
       className="relative mx-auto aspect-square w-full max-w-[520px]"
       aria-hidden="true"
       style={{ perspective: '1100px' }}
     >
-      {/* ambient glow */}
+      {/* outer ambient glow */}
       <div
-        className="ab-glow-pulse absolute left-1/2 top-1/2 h-[62%] w-[62%] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+        className="ab-glow-pulse absolute left-1/2 top-1/2 h-[72%] w-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
         style={{
           background:
-            'radial-gradient(circle, rgba(77,163,255,0.45), rgba(139,92,246,0.22) 45%, transparent 70%)',
+            'radial-gradient(circle, rgba(77,163,255,0.35), rgba(139,92,246,0.15) 50%, transparent 75%)',
         }}
       />
 
+      {/* inner core glow */}
+      <div
+        className="ab-glow-pulse absolute left-1/2 top-1/2 h-[42%] w-[42%] -translate-x-1/2 -translate-y-1/2 rounded-full blur-2xl"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(34,211,238,0.3), rgba(77,163,255,0.2) 50%, transparent 70%)',
+          animationDelay: '1.5s',
+        }}
+      />
+
+      {/* floating particles */}
+      {particles.map((p, i) => (
+        <span
+          key={i}
+          className="ab-particle absolute rounded-full"
+          style={{
+            top: p.top,
+            left: p.left,
+            width: `${p.size}px`,
+            height: `${p.size}px`,
+            background: p.color,
+            boxShadow: `0 0 8px 1px ${p.color}`,
+            animationDuration: `${p.dur}s`,
+            animationDelay: p.delay,
+          }}
+        />
+      ))}
+
       {/* orbital rings */}
       <div className="absolute inset-0 grid place-items-center">
-        <div className="ab-orbit-scene relative h-full w-full">
+        <div className="ab-orbit-scene ab-core-wobble relative h-full w-full">
           {rings.map((ring, i) => (
             <div
               key={i}
@@ -55,7 +92,7 @@ export function IntelligenceCore() {
                     style={{ transform: `rotate(${angle}deg)` }}
                   >
                     <span
-                      className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                      className="ab-anim-node absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full"
                       style={{
                         background: '#eaf3ff',
                         boxShadow: `0 0 14px 3px ${ring.color}`,

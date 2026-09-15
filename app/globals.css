@@ -275,6 +275,79 @@
   .ab-marquee {
     animation: ab-marquee 32s linear infinite;
   }
+
+  /* Modal animations */
+  @keyframes ab-overlay-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes ab-panel-in {
+    from {
+      opacity: 0;
+      transform: translateY(24px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  .ab-overlay-in {
+    animation: ab-overlay-in 0.25s ease forwards;
+  }
+  .ab-panel-in {
+    animation: ab-panel-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Floating particles */
+  @keyframes ab-particle-drift {
+    0%,
+    100% {
+      transform: translate(0, 0);
+      opacity: 0.4;
+    }
+    25% {
+      transform: translate(12px, -18px);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translate(-8px, -28px);
+      opacity: 0.5;
+    }
+    75% {
+      transform: translate(-16px, -10px);
+      opacity: 0.7;
+    }
+  }
+  .ab-particle {
+    animation: ab-particle-drift ease-in-out infinite;
+  }
+
+  /* Core wobble for 3D tilt effect */
+  @keyframes ab-core-wobble {
+    0%,
+    100% {
+      transform: rotateX(72deg) rotateZ(0deg);
+    }
+    50% {
+      transform: rotateX(68deg) rotateZ(8deg);
+    }
+  }
+  .ab-core-wobble {
+    animation: ab-core-wobble 14s ease-in-out infinite;
+  }
+
+  /* Hide scrollbar for filter strip */
+  .ab-scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .ab-scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -291,7 +364,15 @@
   .ab-anim-grid,
   .ab-anim-node,
   .ab-orbit,
-  .ab-orbit-scene {
+  .ab-orbit-scene,
+  .ab-core-wobble,
+  .ab-particle,
+  .ab-glow-pulse,
+  .ab-core-breathe {
+    animation: none !important;
+  }
+  .ab-overlay-in,
+  .ab-panel-in {
     animation: none !important;
   }
 }

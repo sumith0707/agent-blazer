@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { CalendarDays, Users } from 'lucide-react'
+import { CalendarDays, Users, Tag } from 'lucide-react'
 import type { AgentEvent } from '@/lib/events'
 import { Modal } from './modal'
 import { CategoryTag, EventVisual } from './event-card'
@@ -27,7 +27,7 @@ export function EventDetail({
       <div className="relative h-56 w-full sm:h-64">
         {cover ? (
           <img
-            src={cover || '/placeholder.svg'}
+            src={cover}
             alt={`${event.title} — event photo ${active + 1}`}
             className="h-full w-full object-cover"
           />
@@ -60,7 +60,7 @@ export function EventDetail({
         <p className="text-pretty leading-relaxed text-foreground/85">{event.description}</p>
 
         {hasPhotos && event.photos.length > 1 ? (
-          <div className="flex gap-2 overflow-x-auto pb-1">
+          <div className="flex gap-2 overflow-x-auto pb-2 ab-scrollbar-hide">
             {event.photos.map((photo, i) => (
               <button
                 key={photo}
@@ -68,19 +68,23 @@ export function EventDetail({
                 onClick={() => setActive(i)}
                 className={`relative h-16 w-24 flex-shrink-0 overflow-hidden rounded-lg ring-1 transition-all ${
                   i === active
-                    ? 'ring-ab-blue'
+                    ? 'ring-ab-blue ring-2'
                     : 'opacity-60 ring-white/10 hover:opacity-100'
                 }`}
                 aria-label={`View photo ${i + 1}`}
+                aria-pressed={i === active}
               >
-                <img src={photo || '/placeholder.svg'} alt="" className="h-full w-full object-cover" />
+                <img src={photo} alt="" className="h-full w-full object-cover" loading="lazy" />
               </button>
             ))}
           </div>
         ) : null}
 
         <div>
-          <h3 className="ab-mono mb-3 text-[10px] text-ab-muted">Topics covered</h3>
+          <h3 className="ab-mono mb-3 flex items-center gap-2 text-[10px] text-ab-muted">
+            <Tag className="h-3.5 w-3.5" />
+            Topics covered
+          </h3>
           <div className="flex flex-wrap gap-2">
             {event.topics.map((topic) => (
               <Chip key={topic}>{topic}</Chip>

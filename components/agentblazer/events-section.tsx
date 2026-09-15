@@ -74,7 +74,7 @@ export function EventsSection() {
         </Reveal>
 
         {/* Filters */}
-        <div className="mt-12 flex flex-wrap gap-2">
+        <div className="ab-scrollbar-hide mt-12 flex gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible">
           {FILTERS.map((f) => (
             <button
               key={f}
@@ -82,7 +82,7 @@ export function EventsSection() {
               onClick={() => setFilter(f)}
               aria-pressed={filter === f}
               className={cn(
-                'ab-mono rounded-full px-4 py-2 text-[10px] transition-all duration-300',
+                'ab-mono flex-shrink-0 rounded-full px-4 py-2 text-[10px] transition-all duration-300',
                 filter === f
                   ? 'bg-gradient-to-r from-ab-blue to-ab-violet text-ink'
                   : 'border border-white/12 bg-white/[0.02] text-ab-muted hover:border-white/25 hover:text-foreground',

@@ -7,7 +7,7 @@ import { Eyebrow, GlowButton } from './ui'
 const stats = [
   { value: '7', label: 'Flagship events' },
   { value: '55+', label: 'Peak participants' },
-  { value: '3', label: 'Core domains' },
+  { value: '4', label: 'Core domains' },
 ]
 
 const floatingPanels = [
@@ -103,9 +103,10 @@ export function Hero({ onJoin }: { onJoin: () => void }) {
                 style={{ animationDelay: panel.delay }}
               >
                 <img
-                  src={panel.src || '/placeholder.svg'}
+                  src={panel.src}
                   alt=""
                   className="h-24 w-full rounded-lg object-cover sm:h-28"
+                  loading="lazy"
                 />
                 <figcaption className="ab-mono px-1 py-1.5 text-[9px] text-ab-muted">
                   {panel.label}
