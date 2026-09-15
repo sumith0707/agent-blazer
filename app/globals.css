@@ -79,6 +79,9 @@
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
+  button:not(:disabled):not(.cursor-default) {
+    cursor: pointer;
+  }
   ::selection {
     background: rgba(77, 163, 255, 0.28);
     color: #f5f7ff;

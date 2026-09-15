@@ -80,7 +80,7 @@ export function GlowButton({
   const styles =
     variant === 'solid'
       ? 'text-ink bg-gradient-to-r from-ab-blue to-ab-violet shadow-[0_10px_40px_-10px_rgba(77,163,255,0.7)] hover:shadow-[0_16px_50px_-8px_rgba(139,92,246,0.7)] hover:-translate-y-0.5'
-      : 'text-foreground/90 border border-white/15 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/25'
+      : 'text-foreground/90 border border-white/15 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/25 hover:shadow-[0_12px_32px_-12px_rgba(77,163,255,0.55)] hover:-translate-y-0.5'
 
   const content = <span className="relative flex items-center gap-2">{children}</span>
 

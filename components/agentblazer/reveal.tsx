@@ -19,10 +19,7 @@ export function Reveal({ children, className = '', delay = 0, as = 'div' }: Reve
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setShown(true)
-            observer.unobserve(entry.target)
-          }
+          setShown(entry.isIntersecting)
         })
       },
       { threshold: 0.15, rootMargin: '0px 0px -8% 0px' },
